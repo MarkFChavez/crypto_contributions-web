@@ -1,5 +1,5 @@
 <template>
-  <div class='container px-2 py-8'>
+  <div class='container px-2 py-2'>
     <Header></Header>
 
     <div v-if='loading' class='py-4'> Loading contributors... </div>
