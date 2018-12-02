@@ -24,7 +24,7 @@
                 </div>
 
                 <div> 
-                  <span class='font-normal text-xl'> {{c.total}} </span>
+                  <span class='font-normal text-xl'> {{format(c.total)}} </span>
                 </div>
               </div>
             </li>
@@ -53,6 +53,7 @@
 
 <script>
 import axios from 'axios'
+import numeral from 'numeral'
 import spinner from '@/assets/images/audio.svg'
 
 const baseUri = 'https://api.github.com'
@@ -84,6 +85,11 @@ export default {
       .finally(() => {
         this.loading = false
       })
+  },
+  methods: {
+    format (number) {
+      return numeral(number).format('0,0')
+    }
   }
 }
 </script>
