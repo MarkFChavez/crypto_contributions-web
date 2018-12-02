@@ -4,7 +4,7 @@
     <div class="w-1/3">
       <h1 class="font-hairline mb-6 text-center">
         <span class='font-normal'> bitcoin </span> / 
-        <a href='#' class='text-black underline'> bitcoin </a>
+        <a :href='bitcoinUrl' class='text-black underline'> bitcoin </a>
       </h1>
 
       <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
@@ -12,20 +12,24 @@
           <img :src='spinner' width='40' />
         </div>
 
-        <ul class='list-reset' v-else>
-          <li v-for='c in contributors' :key='c.author.id' class='mb-2'>
-            <div class='flex justify-between items-center'>
-              <div> 
-                <img :alt='c.author.id' :src='c.author.avatar_url' width='28' height='28' />
-                <span class='font-normal text-xl'> {{c.author.login}} </span>
-              </div>
+        <div v-else>
+          <p class='mb-4 text-center font-hairline text-md tracking-wide uppercase'> All-time contributors </p>
 
-              <div> 
-                <span class='font-normal text-xl'> {{c.total}} </span>
+          <ul class='list-reset'>
+            <li v-for='c in contributors' :key='c.author.id' class='mb-2'>
+              <div class='flex justify-between items-center'>
+                <div> 
+                  <img :alt='c.author.id' :src='c.author.avatar_url' width='28' height='28' />
+                  <span class='font-normal text-xl'> {{c.author.login}} </span>
+                </div>
+
+                <div> 
+                  <span class='font-normal text-xl'> {{c.total}} </span>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="text-center">
@@ -51,26 +55,28 @@
 import axios from 'axios'
 import spinner from '@/assets/images/audio.svg'
 
-const BASE_URI = 'https://api.github.com'
-const MAX_RECORDS = 10
+const baseUri = 'https://api.github.com'
+const bitcoinUrl = 'https://github.com/bitcoin/bitcoin'
+const maxRecords = 10
 
 export default {
   data () {
     return {
       loading: false,
       spinner: spinner,
+      bitcoinUrl: bitcoinUrl,
       contributors: []
     }
   },
   created () {
-    let bitcoinUrl = `${BASE_URI}/repos/bitcoin/bitcoin/stats/contributors`
+    let bitcoinUrl = `${baseUri}/repos/bitcoin/bitcoin/stats/contributors`
 
     this.loading = true
 
     axios.get(bitcoinUrl)
       .then(response => {
         let contributorsByTopCommits = response.data.reverse()
-        this.contributors = contributorsByTopCommits.slice(0, MAX_RECORDS)
+        this.contributors = contributorsByTopCommits.slice(0, maxRecords)
       })
       .catch(error => {
         console.log(error)
