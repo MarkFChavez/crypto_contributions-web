@@ -8,7 +8,7 @@
       <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
 
         <div v-if='loading' class='text-center'>
-          <span class='font-normal'> Fetching top committers... </span>
+          <img :src='spinner' width='40' />
         </div>
 
         <ul class='list-reset' v-else>
@@ -33,6 +33,7 @@
 
 <script>
 import axios from 'axios'
+import spinner from '@/assets/images/audio.svg'
 
 const BASE_URI = 'https://api.github.com'
 const MAX_RECORDS = 10
@@ -41,6 +42,7 @@ export default {
   data () {
     return {
       loading: false,
+      spinner: spinner,
       contributors: []
     }
   },
