@@ -7,7 +7,7 @@
         <a :href='bitcoinUrl' class='text-black underline'> bitcoin </a>
       </h1>
 
-      <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
+      <div class='border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg'>
         <div v-if='loading' class='text-center'>
           <img :src='spinner' width='40' />
         </div>
@@ -19,8 +19,10 @@
             <li v-for='c in contributors' :key='c.author.id' class='mb-2'>
               <div class='flex justify-between items-center'>
                 <div> 
-                  <img :alt='c.author.id' :src='c.author.avatar_url' width='28' height='28' />
-                  <span class='font-normal text-xl'> {{c.author.login}} </span>
+                  <a :href='c.author.html_url' class='font-normal text-xl no-underline text-black'>
+                    <img :alt='c.author.id' :src='c.author.avatar_url' width='28' height='28' />
+                    <span class='ml-2 hover:underline'>{{c.author.login}}</span>
+                  </a> 
                 </div>
 
                 <div> 
