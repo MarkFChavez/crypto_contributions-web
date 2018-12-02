@@ -1,7 +1,7 @@
 <template>
   <div class='container mx-auto h-full flex justify-center items-center'>
 
-    <div class="w-1/3">
+    <div class='whitebox xs:w-full sm:w-1/2 w-1/3'>
       <h1 class="font-hairline mb-6 text-center">
         <span class='font-normal'> bitcoin </span> / 
         <a :href='bitcoinUrl' class='text-black underline'> bitcoin </a>
