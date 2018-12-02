@@ -1,5 +1,5 @@
 <template>
-  <div class='container mx-auto h-full flex justify-center items-center'>
+  <div class='container mx-auto xs:h-auto h-full flex justify-center items-center'>
 
     <div class='whitebox xs:w-full sm:w-1/2 w-1/3'>
       <h1 class="font-hairline mb-6 text-center">
