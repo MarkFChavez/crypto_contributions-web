@@ -1,5 +1,6 @@
 <template>
-  <div class="container mx-auto h-full flex justify-center items-center">
+  <div class='container mx-auto h-full flex justify-center items-center'>
+
     <div class="w-1/3">
       <h1 class="font-hairline mb-6 text-center">
         <span class='font-normal'> bitcoin </span> / 
@@ -32,8 +33,16 @@
           Made by 
           <a href='https://twitter.com/MarkFChavez' class='text-black underline'>Mark</a>.
         </span>
-      </div>
 
+        <div class='mt-2'>
+          <a 
+            class='github-button' 
+            href='https://github.com/mrkjlchvz/crypto_contributions-web' 
+            data-size='large' 
+            data-show-count='true' 
+            aria-label='Star mrkjlchvz/crypto_contributions-web on GitHub'>Star</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
