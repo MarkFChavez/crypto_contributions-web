@@ -5,7 +5,7 @@
       <a href='https://twitter.com/MarkFChavez' class='text-black underline'>Mark</a>.
     </span>
 
-    <div class='mt-2'>
+    <div class='m-2'>
       <router-link 
         class='text-blue hover:text-blue-darker no-underline' 
         :to='{ name: "root" }'>
