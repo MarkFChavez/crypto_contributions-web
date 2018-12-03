@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import BitcoinPage from "./views/BitcoinPage.vue";
 import EthereumPage from "./views/EthereumPage.vue";
+import StellarPage from "./views/StellarPage.vue";
 
 Vue.use(Router);
 
@@ -19,8 +20,9 @@ export default new Router({
       component: EthereumPage,
     },
     {
-      path: "/bitcoin",
-      redirect: { name: "root" },
-    }
+      path: "/stellar",
+      name: "stellar",
+      component: StellarPage,
+    },
   ]
 });
