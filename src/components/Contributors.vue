@@ -35,6 +35,7 @@ import Header from '@/components/Header'
 import numeral from 'numeral'
 import spinner from '@/assets/images/audio.svg'
 import service from '@/services/api'
+import { mapState } from 'vuex'
 
 const maxRecords = 10
 
@@ -42,13 +43,13 @@ export default {
   props: ['owner', 'repo'],
   data () {
     return {
-      loading: false,
       spinner: spinner,
       contributors: [],
     }
   },
-  created () {
-    this.loading = true
+  computed: mapState(['loading']),
+  mounted () {
+    this.$store.dispatch('startLoading')
 
     service.getContributors(this.owner, this.repo)
       .then(response => {
@@ -56,7 +57,7 @@ export default {
         this.contributors = contributorsByTopCommits.slice(0, maxRecords)
       })
       .catch(error => console.log(error))
-      .finally(() => this.loading = false)
+      .finally(() => this.$store.dispatch('stopLoading'))
   },
   methods: {
     format (number) {
