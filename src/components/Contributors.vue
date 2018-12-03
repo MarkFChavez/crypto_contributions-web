@@ -37,27 +37,29 @@ import spinner from '@/assets/images/audio.svg'
 import service from '@/services/api'
 import { mapState } from 'vuex'
 
-const maxRecords = 10
-
 export default {
   props: ['owner', 'repo'],
   data () {
     return {
       spinner: spinner,
-      contributors: [],
     }
   },
-  computed: mapState(['loading']),
+  computed: {
+    ...mapState(['loading', 'contributors'])
+  },
   mounted () {
     this.$store.dispatch('startLoading')
 
-    service.getContributors(this.owner, this.repo)
-      .then(response => {
-        let contributorsByTopCommits = response.data.reverse()
-        this.contributors = contributorsByTopCommits.slice(0, maxRecords)
-      })
+    let params = { 
+      owner: this.owner, 
+      repo: this.repo 
+    }
+
+    this.$store.dispatch('getContributors', params)
       .catch(error => console.log(error))
-      .finally(() => this.$store.dispatch('stopLoading'))
+      .finally(() => {
+        this.$store.dispatch('stopLoading')
+      })
   },
   methods: {
     format (number) {
