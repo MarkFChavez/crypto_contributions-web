@@ -28,11 +28,10 @@
 </template>
 
 <script>
-import axios from 'axios'
 import numeral from 'numeral'
 import spinner from '@/assets/images/audio.svg'
+import service from '@/services/api'
 
-const baseUri = 'https://api.github.com'
 const maxRecords = 10
 
 export default {
@@ -44,21 +43,15 @@ export default {
     }
   },
   created () {
-    let bitcoinUrl = `${baseUri}/repos/bitcoin/bitcoin/stats/contributors`
-
     this.loading = true
 
-    axios.get(bitcoinUrl)
+    service.getContributors('bitcoin', 'bitcoin')
       .then(response => {
         let contributorsByTopCommits = response.data.reverse()
         this.contributors = contributorsByTopCommits.slice(0, maxRecords)
       })
-      .catch(error => {
-        console.log(error)
-      })
-      .finally(() => {
-        this.loading = false
-      })
+      .catch(error => console.log(error))
+      .finally(() => this.loading = false)
   },
   methods: {
     format (number) {
