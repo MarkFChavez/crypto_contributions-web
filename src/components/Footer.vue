@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <span class='font-hairline'> 
-      Made by 
+      <span class='font-semibold'>CryptoContributors</span> made by 
       <a href='https://twitter.com/MarkFChavez' class='text-black underline'>Mark</a>.
     </span>
 
